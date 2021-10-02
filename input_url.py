@@ -22,7 +22,7 @@ while start == "yes":
         login_button_ID = str(input())
         monitoring = ["firefox_webdriver", link, username_element_ID, username, password_element_ID, password, login_button_ID]
         print (monitoring)
-        with open(csv_PATH, "w", encoding='UTF8', newline='') as f:
+        with open(csv_PATH, "a", encoding='UTF8', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(header)
             writer.writerow(monitoring)
