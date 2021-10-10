@@ -1,11 +1,11 @@
-from selenium import webdriver as wd 
+from selenium import webdriver as wd
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time 
+import time
 import urllib.request
 from socket import timeout
 from urllib.error import HTTPError, URLError
@@ -57,7 +57,7 @@ DO = Select(DomainOption)
 DO.select_by_value("1")
 Ok_Login = Login.find_element_by_name("submit").click()
 print("Manage Engine Eniac is started")
-time.sleep(2) 
+time.sleep(2)
 
 # Solarwinds Orion NOC -->> SONOC
 
@@ -87,7 +87,7 @@ time.sleep(3)
 try:
     element_present = EC.presence_of_element_located((By.ID, 'main'))
     WebDriverWait(Login, timeout).until(element_present)
-    
+
 except TimeoutException:
     print("Timed out waiting for page to load")
 finally:
@@ -116,7 +116,7 @@ Ok_Login = Login.find_element(By.ID,"login").click()
 time.sleep(2)
 print("Oracle Enterprise Manager is started")
 
-# Respina Monitor -->> RM 
+# Respina Monitor -->> RM
 link = "https://monitor.respina.net"
 Login.execute_script("window.open('{}');".format(link))
 RM_handles = Login.window_handles[5]
@@ -145,7 +145,7 @@ try:
     print (status_code)
 except HTTPError as e:
     print (maberror)
-    #maberror = e.code     
+    #maberror = e.code
 if status_code == 200:
     print("MabnaTelecom is up")
     time.sleep(5)
@@ -161,7 +161,7 @@ else:
     #print (status_code)
     print (maberror)
     print ("MabnaTelecom Monitoring is not available")
-    
+
 time.sleep(4)
 
 # NMS
@@ -197,7 +197,7 @@ time.sleep(3)
 try:
     element_present = EC.presence_of_element_located((By.ID, 'main'))
     WebDriverWait(Login, timeout).until(element_present)
-    
+
 except TimeoutException:
     print("Timed out waiting for page to load")
 finally:
@@ -226,7 +226,7 @@ Ok_Login = Login.find_element(By.ID,"enter").click()
 time.sleep(2)
 print("Zabbix Monitoring is started")
 
-##### switch between tabs automaticly 
+##### switch between tabs automaticly
 Login.switch_to.window(MENOC_handles)
 size = len(Login.window_handles)
 print (size)
@@ -234,7 +234,8 @@ while hour < target_hour:
     for i in range(size):
         if Login.window_handles[i] != ZM_handles:
             Login.switch_to.window(Login.window_handles[i])
-            time.sleep(6)            
+            time.sleep(6)
         elif Login.window_handles[i] == ZM_handles:
             Login.switch_to.window(ZM_handles)
+            time.sleep(6)
             i = 0
